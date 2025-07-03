@@ -1,16 +1,14 @@
 //your JS code here. If required.
-// Select the table body element
 const output = document.getElementById("output");
 
-// Show loading row initially
 const loadingRow = document.createElement("tr");
 const loadingCell = document.createElement("td");
 loadingCell.setAttribute("colspan", "2");
+loadingCell.id = "loading";
 loadingCell.textContent = "Loading...";
 loadingRow.appendChild(loadingCell);
 output.appendChild(loadingRow);
 
-// Helper function to create a promise that resolves after a random delay
 function createTimedPromise(index) {
   const delay = Math.random() * 2000 + 1000; // 1000ms to 3000ms
   const startTime = performance.now();
@@ -32,10 +30,8 @@ Promise.all(promises).then((results) => {
   const allEndTime = performance.now();
   const totalTime = ((allEndTime - allStartTime) / 1000).toFixed(3);
 
-  // Clear "Loading..." row
   output.innerHTML = "";
 
-  // Add each promise result row
   results.forEach((result) => {
     const row = document.createElement("tr");
 
@@ -50,7 +46,6 @@ Promise.all(promises).then((results) => {
     output.appendChild(row);
   });
 
-  // Add total row
   const totalRow = document.createElement("tr");
 
   const totalLabel = document.createElement("td");
